@@ -1,3 +1,6 @@
+
+
+
 #! /usr/bin/env bash
 
 
@@ -15,8 +18,11 @@ answer_1=$(bedtools intersect -a $bed/encode.h3k4me3.hela.chr22.bed.gz \
 echo "answer_1: $answer_1"
 
 echo -e  "chr22\t19000000\t19000500" > interval.bed
-bedtools getfasta -bed interval.bed -fast
-bedtools nuc ... | cut -f12
+answer_2=$(bedtools nuc -fi $datasets/fasta/hg19.chr22.fa -bed $Desktop/GAW/problem-set-2/interval.bed \
+        | cut -f5 \
+        | tail -n1)
+
+        echo "answer-2: $answer_2"
 
 #Use BEDtools to identify the length of the CTCF ChIP-seq peak
 #(i.e., interval) that has the largest mean signal in ctcf.hela.chr22.bg.gz.
